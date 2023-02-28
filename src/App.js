@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import {AsyncComponent1, AsyncComponent2} from './AsyncComponent'
+import {Suspense} from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <div className="App">
+    <Suspense fallback={<div>loading 1...</div>} >
+      <AsyncComponent1 />
+      <Suspense fallback={<div>loading 2...</div>} >
+        <AsyncComponent2 />
+      </Suspense>
+    </Suspense>
+  </div>
 }
 
 export default App;
